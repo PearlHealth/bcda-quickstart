@@ -1,0 +1,8 @@
+# IDE
+/.idea/
+/*.iml
+
+.mypy_cache
+
+# Output dir
+/out/
