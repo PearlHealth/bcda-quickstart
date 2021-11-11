@@ -31,7 +31,10 @@ After some research I chose to use the following libraries for this proof of con
 2. Install dependencies. See requirements.txt.
    * `pip install -r bin/requirements.txt`
 
-3. Run:
+3. Before the first run, create the `out/` directory.
+   * `mkdir out`
+
+4. Run:
    * `python runner.py`
 
 You will see something like this:

@@ -141,7 +141,6 @@ class BCDAClient:
         return None
 
     # Download a file, return the path.
-    # TODO stream rather than writing to disk.
     def fetch_data_file(self, record_type: ResourceType, file_url: str) -> str:
         headers = CaseInsensitiveDict()
         headers["Accept-Encoding"] = "gzip"
@@ -158,3 +157,17 @@ class BCDAClient:
                 f.write(chunk)
 
         return data_file_path
+
+    # This is a generator that streams back records.
+    def fetch_data_stream(self, record_type: ResourceType, file_url: str) -> str:
+        headers = CaseInsensitiveDict()
+        headers["Accept-Encoding"] = "gzip"
+
+        print(f"Fetching records of type {record_type.value}")
+        resp = self.session.get(file_url, headers=headers, stream=True)
+
+        if resp.status_code != 200:
+            raise Exception(f"code returned: {resp.status_code} error returned: {resp.text}")
+
+        for line in resp.iter_lines(chunk_size=None):
+            yield line
