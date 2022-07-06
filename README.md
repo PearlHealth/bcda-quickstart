@@ -33,6 +33,7 @@ After some research I chose to use the following libraries for this proof of con
 
 3. Run:
    * `python runner.py`
+- Note: If you run into a FileNotFoundError, try creating the /out directory manually.
 
 You will see something like this:
 

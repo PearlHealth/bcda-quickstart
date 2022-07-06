@@ -5,30 +5,30 @@ from bcda_client import ClientAuth
 
 # 50 synthetic beneficiaries
 EXTRA_SMALL_ACO = ClientAuth(
-    "0c527d2e-2e8a-4808-b11d-0fa06baf8254",
-    "36e0ea2217e6d6180f3ab1108d02ca100d684ebdccc04817ce842300996e568c3d77fc61d84006a3"
+    "3841c594-a8c0-41e5-98cc-38bb45360d3c",
+    "d89810016460e6924a1c62583e5f51d1cbf911366c6bc6f040ff9f620a944efbf2b7264afe071609"
 )
 
 # 2,500 synthetic beneficiaries
 SMALL_ACO = ClientAuth(
-    "f0d89614-efb9-49fa-bb38-996811f235a1",
-    "524a3e8985715d533ae4f182be3dd55778cc3b82179eb1b28759733fd5ddc787a535b548420af1a7"
+    "d5f83f74-6c55-4f1e-9d16-0022688171ba",
+    "acc164b34eb88dd51dc2050ab1b9d7fc7b8781d21998201543ec288a2a85d9e6fbce64b11becb548"
 )
 
 # 7,500 synthetic beneficiaries
 MEDIUM_ACO = ClientAuth(
-    "635003cf-e337-4f91-be51-73b50e27ae9a",
-    "5b1b45658dd9b75ef145a529c77d0c934e64788ba2ce9ce5195b834c1960a642aec689be485ad651"
+    "8c75a6f6-02b9-4a47-96c1-0bd6efd4b5e3",
+    "1f6a1cd9da34c0d0fe781d3e0d6b78c3ff9957f4796659ef2a1895a9f1f2d0cc01ee333db820aad4"
 )
 
 # 20,000 synthetic beneficiaries
 LARGE_ACO = ClientAuth(
-    "8e85dd71-9206-44bb-a07e-638b29b316c1",
-    "5104f03d92ccadf598bf75f5754acc923337361504a401b050cd4cf4e2dcd799c00bec361bf264ed"
+    "f268a8c6-8a29-4d2b-8b92-263dc775750d",
+    "c8dc2fefa1f5eb3817df9ec8aaf6ec56f5a84f0eb085cc3fa2f495b7a2cdad77d31718a2c1ea8fce"
 )
 
 # 30,000 synthetic beneficiaries
 EXTRA_LARGE_ACO = ClientAuth(
-    "aa2d6b93-bbe7-4d1b-8cc5-9a5172fae3a6",
-    "3f18d01dbbc97634a10c0631c6cffced4d7949ddb2a54b6f400792fd55c5538473dbfccfe715bd8f"
+    "6152afb4-c555-46e4-93de-fa16a441d643",
+    "9505e36662f6b59310360bc216d0b467c8f6f29c19dc8b40d91671ed4db7abb0fa2828c1524a595e"
 )

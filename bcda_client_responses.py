@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Any
+from typing import Any, List, Dict
 
 from pydantic import BaseModel, Field
 
@@ -24,11 +24,11 @@ class JobStatus(BaseResponse):
     transaction_time: datetime = None
     request: str = ""
     requires_access_token: bool = False
-    output: list[Output] = None
-    error: list[Any] = None
+    output: List[Output] = None
+    error: List[Any] = None
     job_id: int = Field(0, alias='JobID')
 
-    def output_map(self) -> dict[str, str]:
+    def output_map(self) -> Dict[str, str]:
         return {o.type: o.url for o in self.output}
 
     @property
