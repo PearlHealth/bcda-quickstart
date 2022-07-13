@@ -2,7 +2,7 @@ import enum
 import time
 from dataclasses import dataclass
 from datetime import datetime
-from typing import Optional
+from typing import Optional, List
 
 import requests
 from fhir.resources.capabilitystatement import CapabilityStatement
@@ -81,7 +81,9 @@ class BCDAClient:
         print("FHIR Version: " + metadata.fhirVersion)
 
     @staticmethod
-    def _get_params(resource_types: list[ResourceType] = [], since: datetime = None):
+    def _get_params(resource_types: List[ResourceType] = None, since: datetime = None):
+        if resource_types is None:
+            resource_types = []
         payload = {}
         if len(resource_types) > 0:
             payload["_type"] = ",".join([x.value for x in resource_types])
@@ -90,7 +92,9 @@ class BCDAClient:
         return payload
 
     # Run an async job to fetch bulk data. Returns the URL for checking job status.
-    def _run_export_job(self, api_path: str, resource_types: list[ResourceType] = [], since: datetime = None):
+    def _run_export_job(self, api_path: str, resource_types: List[ResourceType] = None, since: datetime = None):
+        if resource_types is None:
+            resource_types = []
         headers = CaseInsensitiveDict()
         headers["accept"] = "application/fhir+json"
         headers["Prefer"] = "respond-async"
@@ -105,13 +109,19 @@ class BCDAClient:
 
         self.current_job_url = resp.headers["Content-Location"]
 
-    def run_patient_export_job(self, resource_types: list[ResourceType] = [], since: datetime = None):
+    def run_patient_export_job(self, resource_types: List[ResourceType] = None, since: datetime = None):
+        if resource_types is None:
+            resource_types = []
         self._run_export_job(self.PATIENT_EXPORT_PATH, resource_types, since)
 
-    def run_group_export_job(self, resource_types: list[ResourceType] = [], since: datetime = None):
+    def run_group_export_job(self, resource_types=None, since: datetime = None):
+        if resource_types is None:
+            resource_types = []
         self._run_export_job(self.GROUP_EXPORT_PATH, resource_types, since)
 
-    def run_group_runout_export_job(self, resource_types: list[ResourceType] = [], since: datetime = None):
+    def run_group_runout_export_job(self, resource_types: List[ResourceType] = None, since: datetime = None):
+        if resource_types is None:
+            resource_types = []
         self._run_export_job(self.GROUP_RUNOUT_EXPORT_PATH, resource_types, since)
 
     # For long-running jobs, cancel current job if needed
