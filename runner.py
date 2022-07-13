@@ -54,17 +54,16 @@ def main():
 
     resource_type = ResourceType.Patient
     file_url = output_files[resource_type.value]
-    file_path = client.fetch_data_file(resource_type, file_url)
+    stream = client.fetch_data_stream(resource_type, file_url)
 
-    print(f"Loading first record from file {file_path}")
-    with jsonlines.open(file_path) as reader:
+    print(f"Loading records from stream")
+    with jsonlines.Reader(stream) as reader:
         for obj in reader:
             first_patient = Patient(**obj)
             first_name = first_patient.name[0].given[0]
             last_name = first_patient.name[0].family
             last_updated = first_patient.meta.lastUpdated
             print(f"Found patient {first_name} {last_name} with id {first_patient.id}, last updated {last_updated}")
-            break
 
 
 if __name__ == "__main__":
