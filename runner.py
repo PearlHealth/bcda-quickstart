@@ -5,7 +5,7 @@ import jsonlines
 from fhir.resources.patient import Patient
 
 from bcda_client import BCDAClient, ResourceType
-from sandboxes import EXTRA_SMALL_ACO
+from sandboxes import EXTRA_SMALL_ACO, SMALL_ADV_ACO, LARGE_ADV_ACO
 
 
 def main():
@@ -19,12 +19,12 @@ def main():
     #  - Patient (# as per the config selected)
     #  - Coverage (# x4 lines)
     #  - ExplanationOfBenefit (# x40 lines)
-    resource_types = [ResourceType.Patient, ResourceType.Coverage]
+    resource_types = [ResourceType.Patient]
 
     # useful to get a delta from last check; the default time below gets us all data at the moment.
     # unfortunately, the synthetic data all has the exact same lastUpdated datetime, so can't play
     # around with it much. setting to now returns no records, as expected.
-    since = datetime.fromisoformat("2021-02-13T08:00:00.000-05:00")
+    since = datetime.fromisoformat("2021-06-01T08:00:00.000-05:00")
     print("Requesting files since " + str(since))
 
     client.run_patient_export_job(resource_types, since)
@@ -32,7 +32,7 @@ def main():
     print("Fetching job result")
     job_result = None
     i = 0
-    while i != 10 and not job_result:
+    while i != 720 and not job_result:
         job_result = client.fetch_job_result()
         time.sleep(3)
         i += 1
